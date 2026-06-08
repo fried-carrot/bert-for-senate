@@ -4,6 +4,7 @@ const points = [
   { title: 'Virginia Values', body: 'Anchored in faith, family, and the freedom of every citizen to build a life on their own terms.' },
   { title: 'Conservative Vision', body: 'Lower taxes, limited government, and individual liberty, so opportunity is earned and protected for the next generation.' },
 ];
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="rec section" id="about">
@@ -16,7 +17,7 @@ const points = [
   <div class="container--wide rec__grid">
     <figure class="rec__media" data-reveal>
       <div class="rec__frame">
-        <img src="/img/ceremony.jpg" alt="Bert Mizusawa speaking at a military ceremony"
+        <img src={`${base}img/ceremony.jpg`} alt="Bert Mizusawa speaking at a military ceremony"
              width="1400" height="931" loading="lazy" />
       </div>
       <span class="rec__stamp" aria-hidden="true">

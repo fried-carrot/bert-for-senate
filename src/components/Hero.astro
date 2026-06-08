@@ -8,6 +8,8 @@ const planks = [
 // One sequence is repeated so it always exceeds the widest viewport,
 // then duplicated once; translateX(-50%) loops seamlessly.
 const seq = [...planks, ...planks, ...planks];
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="hero" id="top">
@@ -49,7 +51,7 @@ const seq = [...planks, ...planks, ...planks];
     <div class="hero__media">
       <figure class="hero__portrait">
         <img
-          src="/img/candidate.jpg"
+          src={`${base}img/candidate.jpg`}
           alt="Major General Bert Mizusawa in U.S. Army dress uniform"
           width="1100" height="1375" fetchpriority="high"
         />
