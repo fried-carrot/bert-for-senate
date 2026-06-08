@@ -36,7 +36,7 @@
   /* Type */
   --font-poster:    'Ultra', Georgia, serif;            /* fat slab — mastheads, drop numerals */
   --font-condensed: 'Big Shoulders Display', sans-serif; /* tall condensed — headlines, labels */
-  --font-body:      'Newsreader', Georgia, serif;        /* newspaper serif — body */
+  --font-body:      'Libre Caslon Text', Georgia, serif; /* founding-era Caslon — body */
 
   /* Rhythm */
   --container: 1180px;
@@ -62,8 +62,8 @@ body {
   font-family: var(--font-body);
   background-color: var(--paper);
   color: var(--ink-text);
-  line-height: 1.62;
-  font-size: clamp(1.02rem, 0.98rem + 0.22vw, 1.12rem);
+  line-height: 1.66;
+  font-size: clamp(1.06rem, 1rem + 0.26vw, 1.2rem);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
