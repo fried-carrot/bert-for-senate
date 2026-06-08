@@ -144,7 +144,7 @@ button { font: inherit; cursor: pointer; }
 
 /* ----- Layout ----- */
 .container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
-.container--wide { width: min(100% - 2 * var(--gutter), var(--container-wide)); }
+.container--wide { width: min(100% - 2 * var(--gutter), var(--container-wide)); margin-inline: auto; }
 .section { padding-block: var(--section-y); }
 
 /* ----- Buttons (printed stamp blocks) ----- */
