@@ -1,56 +1,42 @@
 ---
 const points = [
-  {
-    n: '01',
-    title: 'Proven Leadership',
-    body: 'A combat-decorated officer who rose to Major General, with a record of leadership tested in service to the nation, not in the comfort of a campaign trail.',
-  },
-  {
-    n: '02',
-    title: 'Virginia Values',
-    body: 'Committed to the principles that make Virginia strong: faith, family, and the freedom of every citizen to build a life on their own terms.',
-  },
-  {
-    n: '03',
-    title: 'Conservative Vision',
-    body: 'A clear plan for lower taxes, limited government, and individual liberty, so opportunity is earned and protected for the next generation.',
-  },
+  { title: 'Proven Leadership', body: 'Rose to Major General over a thirty-four year career, leading soldiers in service to the nation, not slogans on a campaign trail.' },
+  { title: 'Virginia Values', body: 'Anchored in faith, family, and the freedom of every citizen to build a life on their own terms.' },
+  { title: 'Conservative Vision', body: 'Lower taxes, limited government, and individual liberty, so opportunity is earned and protected for the next generation.' },
 ];
 ---
 
-<section class="about section" id="about">
-  <div class="container--wide about__grid">
-    <div class="about__media" data-reveal>
-      <div class="about__frame">
-        <img
-          src="/img/ceremony.jpg"
-          alt="Bert Mizusawa speaking at a military ceremony"
-          width="1920"
-          height="1277"
-          loading="lazy"
-        />
-      </div>
-      <div class="about__plaque">
-        <span class="about__plaque-num">34</span>
-        <span class="about__plaque-label">Years defending<br />the country he loves</span>
-      </div>
-    </div>
+<section class="rec section" id="about">
+  <div class="container--wide rec__head" data-reveal>
+    <p class="eyebrow eyebrow--ink">The Record</p>
+    <h2 class="headline rec__title">Leadership Earned <span>The Hard Way</span></h2>
+    <hr class="rule-double rec__rule" />
+  </div>
 
-    <div class="about__copy">
-      <p class="eyebrow" data-reveal>Fighting for Virginia</p>
-      <h2 class="display about__title" data-reveal data-reveal-delay="1">
-        Leadership earned the hard way.
-      </h2>
-      <p class="lede about__lede" data-reveal data-reveal-delay="2">
-        Decades of service to our nation taught Bert that real leadership is
-        measured by results and sacrifice, not slogans. He brings that same
-        commitment to the fight for Virginia families.
+  <div class="container--wide rec__grid">
+    <figure class="rec__media" data-reveal>
+      <div class="rec__frame">
+        <img src="/img/ceremony.jpg" alt="Bert Mizusawa speaking at a military ceremony"
+             width="1400" height="931" loading="lazy" />
+      </div>
+      <span class="rec__stamp" aria-hidden="true">
+        <strong>34</strong><em>Years of<br />Service</em>
+      </span>
+      <figcaption>Maj. Gen. Mizusawa addresses servicemembers at a ceremony.</figcaption>
+    </figure>
+
+    <div class="rec__body">
+      <p class="rec__intro" data-reveal>
+        <span class="rec__dropcap">D</span>ecades of service to our nation taught Bert
+        Mizusawa that real leadership is measured by results and sacrifice, not by
+        applause. He carried that conviction from the battlefield to the boardroom,
+        and now to the fight for Virginia families.
       </p>
 
-      <ul class="about__points">
+      <ul class="rec__points">
         {points.map((p, i) => (
-          <li class="about__point" data-reveal data-reveal-delay={String(i + 2)}>
-            <span class="about__point-n">{p.n}</span>
+          <li class="rec__point" data-reveal data-reveal-delay={String(i + 1)}>
+            <span class="rec__point-no" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <div>
               <h3>{p.title}</h3>
               <p>{p.body}</p>
@@ -63,97 +49,91 @@ const points = [
 </section>
 
 <style>
-  .about { background: var(--paper-2); position: relative; }
-  .about__grid {
+  .rec { background: var(--paper); position: relative; }
+
+  .rec__head { text-align: center; margin-bottom: clamp(2.25rem, 4vw, 3.5rem); }
+  .rec__head .eyebrow { justify-content: center; }
+  .rec__title {
+    font-size: clamp(2.3rem, 1.4rem + 4vw, 4.5rem);
+    color: var(--ink);
+    margin: 0.75rem 0 1.25rem;
+  }
+  .rec__title span { color: var(--ox); }
+  .rec__rule { width: min(420px, 70%); margin-inline: auto; }
+
+  .rec__grid {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: clamp(2.5rem, 6vw, 5.5rem);
-    align-items: center;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: start;
   }
 
-  .about__media { position: relative; }
-  .about__frame {
-    position: relative;
-    border-radius: 6px;
+  .rec__media { position: relative; margin: 0; }
+  .rec__frame {
+    border: 3px solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ink);
+    background: var(--ink);
     overflow: hidden;
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--line);
   }
-  .about__frame::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(200deg, transparent 55%, rgba(13,39,66,0.35));
+  .rec__frame img {
+    width: 100%; aspect-ratio: 3 / 2; object-fit: cover;
+    filter: url(#duotone-ink) contrast(1.05);
   }
-  .about__frame img {
-    width: 100%; height: 100%;
-    aspect-ratio: 5 / 4;
-    object-fit: cover;
+  .rec__stamp {
+    position: absolute; top: -22px; right: -18px;
+    width: 96px; height: 96px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--ox); color: var(--paper);
+    border-radius: 50%;
+    border: 3px solid var(--paper);
+    box-shadow: 0 0 0 3px var(--ink);
+    transform: rotate(7deg);
+    text-align: center;
   }
-  .about__plaque {
-    position: absolute;
-    right: clamp(-0.5rem, 1vw, 1.25rem);
-    bottom: -1.75rem;
-    display: flex; align-items: center; gap: 0.9rem;
-    background: var(--navy);
-    color: var(--white);
-    padding: 1.1rem 1.4rem;
-    border-radius: 5px;
-    box-shadow: var(--shadow-lift);
-    border-left: 4px solid var(--red);
+  .rec__stamp strong { font-family: var(--font-poster); font-size: 1.9rem; line-height: 0.9; }
+  .rec__stamp em {
+    font-style: normal; font-family: var(--font-condensed); font-weight: 700;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.1;
+    margin-top: 2px;
   }
-  .about__plaque-num {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 3rem;
-    line-height: 1;
-    color: var(--gold);
-  }
-  .about__plaque-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--on-navy-soft);
-    line-height: 1.35;
+  .rec__media figcaption {
+    font-family: var(--font-body); font-style: italic;
+    font-size: 0.85rem; color: var(--ink-text);
+    margin-top: 1.4rem; padding-left: 0.9rem;
+    border-left: 3px solid var(--ox);
+    max-width: 36ch;
   }
 
-  .about__title {
-    font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.5rem);
-    color: var(--navy);
-    margin: 1rem 0 1.25rem;
+  .rec__intro { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.32rem); line-height: 1.55; }
+  .rec__dropcap {
+    float: left;
+    font-family: var(--font-poster);
+    font-size: 4.4rem; line-height: 0.74;
+    color: var(--ox);
+    padding: 0.5rem 0.6rem 0 0;
+    margin-top: 4px;
   }
-  .about__lede { max-width: 46ch; margin-bottom: 2.5rem; }
 
-  .about__points { list-style: none; padding: 0; display: grid; gap: 1.5rem; }
-  .about__point {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.25rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--line);
+  .rec__points { list-style: none; padding: 0; margin-top: 2rem; display: grid; gap: 1.4rem; }
+  .rec__point {
+    display: grid; grid-template-columns: auto 1fr; gap: 1.2rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--line);
   }
-  .about__point:last-child { border-bottom: 0; padding-bottom: 0; }
-  .about__point-n {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1rem;
-    color: var(--red);
-    padding-top: 0.2rem;
-    letter-spacing: 0.04em;
+  .rec__point-no {
+    font-family: var(--font-poster);
+    font-size: 1.6rem; color: var(--ink);
+    line-height: 1; opacity: 0.85;
   }
-  .about__point h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    font-size: 1.12rem;
-    color: var(--navy);
-    margin-bottom: 0.35rem;
+  .rec__point h3 {
+    font-family: var(--font-condensed); font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    font-size: 1.22rem; color: var(--ink); margin-bottom: 0.3rem;
   }
-  .about__point p { color: var(--text-soft); font-size: 0.98rem; }
+  .rec__point p { color: var(--ink-text); font-size: 0.98rem; }
 
-  @media (max-width: 900px) {
-    .about__grid { grid-template-columns: 1fr; }
-    .about__media { max-width: 540px; }
-    .about__plaque { bottom: -1.25rem; }
+  @media (max-width: 880px) {
+    .rec__grid { grid-template-columns: 1fr; }
+    .rec__media { max-width: 540px; }
   }
 </style>

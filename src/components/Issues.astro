@@ -1,159 +1,107 @@
 ---
 const issues = [
-  {
-    n: '01',
-    title: 'Secure Borders, Safe Communities',
-    body: 'Back the rule of law and the men and women who enforce it. A nation without borders is no nation at all.',
-  },
-  {
-    n: '02',
-    title: 'Lower Taxes, Real Growth',
-    body: 'Keep more of what Virginians earn. Cut the waste, unleash small business, and let working families get ahead.',
-  },
-  {
-    n: '03',
-    title: 'A Strong National Defense',
-    body: 'Fund the military, stand by our veterans, and confront the adversaries who threaten American freedom.',
-  },
-  {
-    n: '04',
-    title: 'Energy Independence',
-    body: 'Power Virginia with affordable, reliable American energy instead of depending on foreign suppliers.',
-  },
-  {
-    n: '05',
-    title: 'Defend Our Freedoms',
-    body: 'Protect the constitutional rights of every citizen, from free speech to the Second Amendment.',
-  },
-  {
-    n: '06',
-    title: 'Honor Our Veterans',
-    body: 'Deliver the healthcare, respect, and opportunity our servicemembers earned, with no one left behind.',
-  },
+  { title: 'Secure the Border', body: 'Back the rule of law and the men and women who enforce it. A nation without borders is no nation at all.' },
+  { title: 'Lower Taxes, Real Growth', body: 'Let Virginians keep more of what they earn. Cut the waste and unleash small business and working families.' },
+  { title: 'A Strong Defense', body: 'Fund the military, stand by our veterans, and confront the adversaries who threaten American freedom.' },
+  { title: 'Energy Independence', body: 'Power the Commonwealth with affordable, reliable American energy, not foreign suppliers.' },
+  { title: 'Defend Our Freedoms', body: 'Protect the constitutional rights of every citizen, from free speech to the Second Amendment.' },
+  { title: 'Honor Our Veterans', body: 'Deliver the healthcare, respect, and opportunity our servicemembers earned. No one left behind.' },
 ];
 ---
 
-<section class="issues section" id="issues">
-  <div class="container--wide">
-    <div class="issues__head">
-      <div data-reveal>
-        <p class="eyebrow eyebrow--light">The Platform</p>
-        <h2 class="display issues__title">Where I Stand</h2>
-      </div>
-      <p class="lede issues__intro" data-reveal data-reveal-delay="1">
-        Six commitments to Virginia, grounded in the same duty that guided a
-        lifetime in uniform. No equivocation, no fine print.
+<section class="plat section" id="issues">
+  <span class="plat__halftone" aria-hidden="true"></span>
+  <div class="container--wide plat__inner">
+    <div class="plat__head">
+      <p class="eyebrow eyebrow--cream" data-reveal>The Platform</p>
+      <h2 class="poster plat__title" data-reveal data-reveal-delay="1">Where I Stand</h2>
+      <p class="lede plat__intro" data-reveal data-reveal-delay="2">
+        Six planks for Virginia, grounded in the same duty that guided a lifetime
+        in uniform. No equivocation. No fine print.
       </p>
+      <div class="rule-stars plat__stars" data-reveal data-reveal-delay="2" aria-hidden="true">
+        &#9733;&#9733;&#9733;
+      </div>
     </div>
 
-    <ul class="issues__grid">
+    <ol class="plat__grid">
       {issues.map((it, i) => (
-        <li class="issue" data-reveal data-reveal-delay={String((i % 3) + 1)}>
-          <span class="issue__n">{it.n}</span>
-          <h3 class="issue__title">{it.title}</h3>
-          <p class="issue__body">{it.body}</p>
-          <span class="issue__rule" aria-hidden="true"></span>
+        <li class="plank" data-reveal data-reveal-delay={String((i % 3) + 1)}>
+          <span class="plank__no">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="plank__title">{it.title}</h3>
+          <p class="plank__body">{it.body}</p>
         </li>
       ))}
-    </ul>
+    </ol>
   </div>
 </section>
 
 <style>
-  .issues {
-    background:
-      linear-gradient(180deg, var(--ink), var(--navy) 120%);
-    color: var(--on-navy);
+  .plat {
     position: relative;
-  }
-  .issues::before {
-    content: "";
-    position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.4px);
-    background-size: 34px 34px;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .issues > .container--wide { position: relative; }
-
-  .issues__head {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: end;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  }
-  .issues__title {
-    font-size: clamp(2.4rem, 1.5rem + 3.5vw, 4.5rem);
-    color: var(--white);
-    margin-top: 1rem;
-  }
-  .issues__intro { color: var(--on-navy-soft); max-width: 44ch; justify-self: end; }
-
-  .issues__grid {
-    list-style: none; padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-  .issue {
-    position: relative;
-    background: color-mix(in srgb, var(--navy-700) 55%, transparent);
-    border: 1px solid var(--on-navy-line);
-    border-radius: 5px;
-    padding: 2rem 1.75rem 2.25rem;
+    background: var(--ink);
+    color: var(--on-ink);
     overflow: hidden;
-    transition: transform 0.3s var(--ease), background 0.3s var(--ease),
-                border-color 0.3s var(--ease);
   }
-  .issue::before {
-    content: "";
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 3px; background: var(--red);
-    transform: scaleY(0); transform-origin: top;
-    transition: transform 0.35s var(--ease);
+  .plat__halftone {
+    position: absolute; inset: 0;
+    color: rgba(241,230,205,0.06);
+    background-image: radial-gradient(currentColor 1.4px, transparent 1.6px);
+    background-size: 12px 12px;
   }
-  .issue:hover {
-    transform: translateY(-5px);
-    background: color-mix(in srgb, var(--navy-700) 80%, transparent);
-    border-color: rgba(255,255,255,0.22);
-  }
-  .issue:hover::before { transform: scaleY(1); }
+  .plat__inner { position: relative; }
 
-  .issue__n {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 2.6rem;
-    line-height: 1;
-    color: rgba(255,255,255,0.12);
-    -webkit-text-stroke: 1px rgba(194,162,91,0.5);
-    display: block;
-    margin-bottom: 1rem;
+  .plat__head { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .plat__head .eyebrow { justify-content: center; }
+  .plat__title {
+    font-size: clamp(2.8rem, 1.6rem + 6vw, 6rem);
+    color: var(--paper);
+    text-shadow: 4px 4px 0 var(--ox);
+    margin: 0.85rem 0 1.1rem;
   }
-  .issue__title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    font-size: 1.18rem;
-    line-height: 1.15;
-    color: var(--white);
-    margin-bottom: 0.7rem;
-  }
-  .issue__body { color: var(--on-navy-soft); font-size: 0.96rem; }
-  .issue__rule {
-    display: block;
-    width: 32px; height: 3px;
-    background: var(--gold);
-    margin-top: 1.25rem;
-  }
+  .plat__intro { color: var(--on-ink-soft); max-width: 50ch; margin-inline: auto; }
+  .plat__stars { color: var(--ochre-2); justify-content: center; max-width: 320px; margin: 1.5rem auto 0; }
 
-  @media (max-width: 900px) {
-    .issues__head { grid-template-columns: 1fr; }
-    .issues__intro { justify-self: start; }
-    .issues__grid { grid-template-columns: repeat(2, 1fr); }
+  .plat__grid {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 2px solid var(--line-cream);
+    border-left: 2px solid var(--line-cream);
   }
-  @media (max-width: 560px) {
-    .issues__grid { grid-template-columns: 1fr; }
+  .plank {
+    position: relative;
+    border-right: 2px solid var(--line-cream);
+    border-bottom: 2px solid var(--line-cream);
+    padding: 2rem 1.85rem 2.25rem;
+    transition: background 0.25s var(--ease);
+  }
+  .plank::before {
+    content: ""; position: absolute; left: 0; top: 0; height: 4px; width: 0;
+    background: var(--ox);
+    transition: width 0.3s var(--ease);
+  }
+  .plank:hover { background: rgba(241,230,205,0.04); }
+  .plank:hover::before { width: 100%; }
+
+  .plank__no {
+    font-family: var(--font-poster);
+    font-size: 2.2rem; line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ochre);
+    display: block; margin-bottom: 0.9rem;
+  }
+  .plank__title {
+    font-family: var(--font-condensed); font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.02em;
+    font-size: 1.34rem; line-height: 1.05;
+    color: var(--paper); margin-bottom: 0.6rem;
+  }
+  .plank__body { color: var(--on-ink-soft); font-size: 0.97rem; }
+
+  @media (max-width: 880px) {
+    .plat__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .plat__grid { grid-template-columns: 1fr; }
   }
 </style>

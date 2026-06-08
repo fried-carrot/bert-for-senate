@@ -9,7 +9,7 @@ Campaign website for Maj. Gen. Bert Mizusawa (Ret.), candidate for the U.S. Sena
 
 ## Design direction
 
-Bold patriotic, executed with restraint. Dominant deep navy and warm paper, one disciplined campaign red, a thin gold medal accent. Monumental carved display type (Archivo), readable civic body type (Public Sans, the U.S. design-system font), serif accent for the vision quote (Fraunces). The full token system lives in `src/styles/global.css`.
+Vintage Americana broadside. Enlistment-poster meets 1860s campaign broadside: aged cream paper, oxblood red, ink navy, gold ochre. Heavy fat-slab wood type (Ultra) for mastheads, tall condensed display (Big Shoulders Display) for headlines, a newspaper serif (Newsreader) for body. Atmosphere is built from a fixed paper-grain overlay, halftone shading, a printed page frame, ornamental star + double rules, and a two-color screenprint (duotone) treatment of the photography via SVG filters. The full token system lives in `src/styles/global.css`; the duotone filters live in `src/layouts/Base.astro`.
 
 ## Develop
 

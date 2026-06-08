@@ -3,262 +3,319 @@ const donate = 'https://secure.winred.com/';
 ---
 
 <section class="hero" id="top">
-  <div class="hero__bg" aria-hidden="true">
-    <span class="hero__stars"></span>
-    <span class="hero__glow"></span>
-  </div>
+  <span class="hero__halftone" aria-hidden="true"></span>
+  <span class="hero__rays" aria-hidden="true"></span>
 
-  <div class="container--wide hero__grid">
+  <div class="container--wide hero__inner">
     <div class="hero__copy">
-      <p class="eyebrow eyebrow--light hero__eyebrow">Virginia &middot; U.S. Senate 2026</p>
+      <p class="eyebrow eyebrow--cream hero__kicker">Virginia &middot; U.S. Senate &middot; 2026</p>
 
-      <h1 class="display hero__title">
-        <span class="hero__line">Service</span>
-        <span class="hero__line">Before</span>
-        <span class="hero__line hero__line--accent">Self.</span>
+      <h1 class="hero__title">
+        <span class="hero__pre">For United States Senate</span>
+        <span class="poster hero__name hero__name--1">Bert</span>
+        <span class="poster hero__name hero__name--2">Mizusawa</span>
       </h1>
 
+      <p class="hero__slogan headline">Duty. Country. <span>Virginia.</span></p>
+
       <p class="lede hero__lede">
-        Maj. Gen. <strong>Bert Mizusawa</strong> spent a lifetime defending this
-        country. Now he is fighting to protect Virginia's values and secure
-        America's future in the United States Senate.
+        A combat-decorated Major General who gave thirty-four years to this
+        country &mdash; now standing for the Senate to defend Virginia&rsquo;s
+        values and secure America&rsquo;s future.
       </p>
 
       <div class="hero__actions">
-        <a href="#issues" class="btn">
-          See Where I Stand
-          <span class="arrow" aria-hidden="true">&rarr;</span>
+        <a href="#issues" class="btn btn--cream">
+          Read the Platform <span class="arrow" aria-hidden="true">&rarr;</span>
         </a>
-        <a href={donate} class="btn btn--on-navy" target="_blank" rel="noopener">
-          Join the Campaign
-        </a>
+        <a href={donate} class="btn btn--ghost-cream" target="_blank" rel="noopener">Join the Ranks</a>
       </div>
 
-      <ul class="hero__creds">
-        <li><span>34+</span> Years of Service</li>
-        <li><span>2&#9733;</span> Major General, U.S. Army</li>
-        <li><span>VA</span> Lifelong Virginian</li>
+      <ul class="hero__record">
+        <li><strong>34</strong><span>Years in Uniform</span></li>
+        <li><strong>&#9733;&#9733;</strong><span>Major General, U.S. Army</span></li>
+        <li><strong>VA</strong><span>Lifelong Virginian</span></li>
       </ul>
     </div>
 
     <div class="hero__media">
-      <div class="hero__frame">
+      <figure class="hero__portrait">
         <img
           src="/img/candidate.jpg"
-          alt="Major General Bert Mizusawa in U.S. Army dress uniform before the American flag"
-          width="1536"
-          height="1920"
-          fetchpriority="high"
+          alt="Major General Bert Mizusawa in U.S. Army dress uniform"
+          width="1100" height="1375" fetchpriority="high"
         />
-        <span class="hero__tag">
-          <strong>MAJ. GEN. BERT MIZUSAWA</strong>
-          <em>U.S. Army, Retired</em>
+        <figcaption>
+          <strong>Maj. Gen. Bert Mizusawa</strong>
+          <em>United States Army &middot; Retired</em>
+        </figcaption>
+      </figure>
+
+      <span class="hero__seal" aria-hidden="true">
+        <span class="hero__seal-ring">
+          <span class="hero__seal-stars">&#9733;&#9733;</span>
+          <span class="hero__seal-top">Major General</span>
+          <span class="hero__seal-bottom">U.S. Army</span>
         </span>
-      </div>
-      <span class="hero__badge" aria-hidden="true">
-        <span class="hero__badge-star">&#9733;&#9733;</span>
       </span>
+
+      <span class="hero__corner" aria-hidden="true">Paid Political<br />Notice</span>
     </div>
   </div>
 
-  <div class="stripe-rule hero__stripe" aria-hidden="true"></div>
+  <div class="hero__ribbon" aria-hidden="true">
+    <div class="hero__ribbon-track">
+      <span>&#9733; Service Before Self &#9733; Faith &amp; Family &#9733; Strong Defense &#9733; Lower Taxes &#9733; Energy Independence &#9733; Honor Our Veterans </span>
+      <span>&#9733; Service Before Self &#9733; Faith &amp; Family &#9733; Strong Defense &#9733; Lower Taxes &#9733; Energy Independence &#9733; Honor Our Veterans </span>
+    </div>
+  </div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    background: linear-gradient(160deg, var(--ink) 0%, var(--navy) 58%, var(--navy-700) 100%);
-    color: var(--on-navy);
+    background: var(--ink);
+    color: var(--on-ink);
     overflow: hidden;
     isolation: isolate;
+    border-bottom: 3px solid var(--ink);
   }
-  .hero__bg { position: absolute; inset: 0; z-index: -1; }
-  .hero__stars {
-    position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1.4px);
-    background-size: 30px 30px;
-    mask-image: linear-gradient(to bottom, black, transparent 70%);
-    opacity: 0.5;
+  .hero__halftone {
+    position: absolute; inset: 0; z-index: 0;
+    color: rgba(241, 230, 205, 0.07);
+    background-image: radial-gradient(currentColor 1.5px, transparent 1.7px);
+    background-size: 11px 11px;
+    mask-image: radial-gradient(120% 90% at 70% 30%, black, transparent 75%);
   }
-  .hero__glow {
-    position: absolute;
-    top: -20%; right: -10%;
-    width: 60vw; height: 60vw; max-width: 720px; max-height: 720px;
-    background: radial-gradient(circle, rgba(200,16,46,0.32), transparent 62%);
-    filter: blur(10px);
+  .hero__rays {
+    position: absolute; z-index: 0;
+    top: -30%; right: -5%;
+    width: 70vw; height: 70vw; max-width: 760px; max-height: 760px;
+    background:
+      repeating-conic-gradient(from 0deg at 50% 50%,
+        rgba(177,129,47,0.16) 0deg 6deg, transparent 6deg 12deg);
+    border-radius: 50%;
+    mask-image: radial-gradient(circle, black 30%, transparent 68%);
+    opacity: 0.8;
+    animation: spin 120s linear infinite;
   }
 
-  .hero__grid {
+  .hero__inner {
+    position: relative; z-index: 1;
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1.08fr 0.92fr;
     align-items: center;
-    gap: clamp(2rem, 5vw, 5rem);
-    padding-block: clamp(3.5rem, 7vw, 6.5rem) clamp(4rem, 8vw, 7rem);
-    min-height: min(86vh, 880px);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    padding-block: clamp(2.75rem, 6vw, 5.5rem) clamp(4.5rem, 7vw, 6.5rem);
+    min-height: min(88vh, 900px);
   }
 
-  .hero__eyebrow {
-    opacity: 0;
-    animation: rise 0.7s var(--ease) 0.05s forwards;
+  .hero__kicker { opacity: 0; animation: rise 0.7s var(--ease) 0.1s forwards; }
+
+  .hero__title { display: flex; flex-direction: column; margin: 1.1rem 0 0.5rem; }
+  .hero__pre {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.25rem);
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--on-ink-soft);
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: rise 0.7s var(--ease) 0.18s forwards;
   }
-  .hero__title {
-    font-size: clamp(3.4rem, 2rem + 9vw, 8.5rem);
-    color: var(--white);
-    margin: 1.1rem 0 1.5rem;
+  .hero__name {
+    font-size: clamp(3.6rem, 1.5rem + 13vw, 9rem);
+    color: var(--paper);
+    letter-spacing: -0.01em;
+    text-shadow: 5px 5px 0 var(--ox);
+    opacity: 0; transform: translateY(40px) scale(1.06);
+    animation: stamp 0.7s var(--ease) forwards;
   }
-  .hero__line {
-    display: block;
-    opacity: 0;
-    transform: translateY(40px);
-    animation: rise 0.85s var(--ease) forwards;
+  .hero__name--1 { animation-delay: 0.26s; }
+  .hero__name--2 { color: var(--ochre-2); text-shadow: 5px 5px 0 var(--ink-2); animation-delay: 0.36s; }
+
+  .hero__slogan {
+    font-size: clamp(1.3rem, 1rem + 1.4vw, 2rem);
+    color: var(--paper);
+    margin: 1rem 0 1.25rem;
+    opacity: 0; animation: rise 0.7s var(--ease) 0.5s forwards;
   }
-  .hero__line:nth-child(1) { animation-delay: 0.12s; }
-  .hero__line:nth-child(2) { animation-delay: 0.22s; }
-  .hero__line--accent {
-    color: var(--red);
-    -webkit-text-stroke: 0;
-    animation-delay: 0.32s;
-    position: relative;
-  }
+  .hero__slogan span { color: var(--ox-bright); }
+
   .hero__lede {
-    color: var(--on-navy-soft);
-    max-width: 38ch;
-    opacity: 0;
-    animation: rise 0.8s var(--ease) 0.42s forwards;
+    color: var(--on-ink-soft);
+    max-width: 42ch;
+    border-left: 3px solid var(--ox);
+    padding-left: 1.1rem;
+    opacity: 0; animation: rise 0.7s var(--ease) 0.58s forwards;
   }
-  .hero__lede strong { color: var(--white); font-weight: 700; }
 
   .hero__actions {
-    display: flex; flex-wrap: wrap; gap: 0.9rem;
-    margin-top: 2rem;
-    opacity: 0;
-    animation: rise 0.8s var(--ease) 0.52s forwards;
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    margin-top: 1.9rem;
+    opacity: 0; animation: rise 0.7s var(--ease) 0.66s forwards;
   }
 
-  .hero__creds {
-    list-style: none; padding: 0;
-    display: flex; flex-wrap: wrap; gap: 2rem;
-    margin-top: 2.75rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--on-navy-line);
-    opacity: 0;
-    animation: rise 0.8s var(--ease) 0.62s forwards;
+  .hero__record {
+    list-style: none; padding: 1.5rem 0 0; margin-top: 2rem;
+    display: flex; flex-wrap: wrap; gap: 2.25rem;
+    border-top: 1px solid var(--line-cream);
+    opacity: 0; animation: rise 0.7s var(--ease) 0.74s forwards;
   }
-  .hero__creds li {
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--on-navy-soft);
-    line-height: 1.3;
-    max-width: 9rem;
-  }
-  .hero__creds span {
+  .hero__record li { line-height: 1.15; }
+  .hero__record strong {
     display: block;
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.75rem;
-    color: var(--gold);
+    font-family: var(--font-poster);
+    font-size: 2rem;
+    color: var(--ochre-2);
     letter-spacing: 0;
-    margin-bottom: 0.25rem;
+  }
+  .hero__record span {
+    font-family: var(--font-condensed);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-ink-soft);
   }
 
-  /* Media */
+  /* Portrait */
   .hero__media {
     position: relative;
     justify-self: end;
-    width: 100%;
-    max-width: 460px;
-    opacity: 0;
-    animation: fade 1s var(--ease) 0.3s forwards;
+    width: 100%; max-width: 430px;
+    opacity: 0; animation: rise 0.8s var(--ease) 0.4s forwards;
   }
-  .hero__frame {
+  .hero__portrait {
     position: relative;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: var(--shadow-lift);
-    border: 1px solid var(--on-navy-line);
-    transform: translateZ(0);
+    border: 3px solid var(--paper);
+    box-shadow: 12px 12px 0 var(--ox), 12px 12px 0 3px var(--ink);
+    transform: rotate(-1.5deg);
+    background: var(--ink-2);
   }
-  .hero__frame::before {
-    content: "";
-    position: absolute; inset: 0; z-index: 2;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-    pointer-events: none;
-  }
-  .hero__frame img {
-    width: 100%; height: auto;
+  .hero__portrait img {
+    width: 100%; height: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    object-position: 50% 18%;
+    object-position: 50% 16%;
+    filter: url(#duotone-ink) contrast(1.06);
+    mix-blend-mode: normal;
   }
-  .hero__tag {
-    position: absolute;
-    left: 0; bottom: 0; z-index: 3;
-    display: flex; flex-direction: column;
-    gap: 2px;
-    padding: 0.85rem 1.1rem;
-    background: color-mix(in srgb, var(--ink) 82%, transparent);
-    backdrop-filter: blur(6px);
-    border-top-right-radius: 6px;
-    border-top: 2px solid var(--red);
+  .hero__portrait::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(15,22,38,0.55) 1px, transparent 1.3px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.28;
+    pointer-events: none;
   }
-  .hero__tag strong {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.92rem;
-    letter-spacing: 0.02em;
-    color: var(--white);
+  .hero__portrait figcaption {
+    position: absolute; left: -3px; right: -3px; bottom: -3px;
+    background: var(--ink);
+    border: 3px solid var(--paper);
+    border-top: 3px solid var(--ox);
+    padding: 0.7rem 1rem;
+    display: flex; flex-direction: column; gap: 2px;
   }
-  .hero__tag em {
+  .hero__portrait figcaption strong {
+    font-family: var(--font-condensed);
+    font-weight: 800; font-size: 1.05rem; letter-spacing: 0.02em;
+    text-transform: uppercase; color: var(--paper);
+  }
+  .hero__portrait figcaption em {
     font-style: normal;
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--gold-soft);
+    font-family: var(--font-condensed); font-weight: 600;
+    font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ochre-2);
   }
-  .hero__badge {
-    position: absolute;
-    top: -22px; right: -22px;
-    width: 88px; height: 88px;
+
+  .hero__seal {
+    position: absolute; top: -34px; right: -30px;
+    width: 116px; height: 116px;
     display: grid; place-items: center;
-    background: var(--red);
+    background: var(--ox);
+    color: var(--paper);
     border-radius: 50%;
-    box-shadow: 0 12px 30px -8px rgba(200,16,46,0.7), inset 0 0 0 2px rgba(255,255,255,0.25);
-    border: 3px solid var(--ink);
+    border: 3px solid var(--paper);
+    box-shadow: 0 0 0 3px var(--ink), 5px 6px 0 3px rgba(15,22,38,0.5);
+    transform: rotate(8deg) scale(0);
+    animation: stampseal 0.6s var(--ease) 0.85s forwards;
   }
-  .hero__badge-star {
-    color: var(--white);
-    letter-spacing: -2px;
-    font-size: 1.1rem;
+  .hero__seal-ring {
+    width: 92px; height: 92px;
+    border: 1.5px dashed rgba(241,230,205,0.7);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    text-align: center;
+    position: relative;
+  }
+  .hero__seal-stars { font-size: 0.85rem; letter-spacing: -1px; display: block; margin-bottom: 1px; }
+  .hero__seal-top, .hero__seal-bottom {
+    display: block;
+    font-family: var(--font-condensed); font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.05;
+  }
+  .hero__seal-top { font-size: 0.74rem; }
+  .hero__seal-bottom { font-size: 0.64rem; color: var(--ochre-2); margin-top: 1px; }
+
+  .hero__corner {
+    position: absolute; left: -16px; bottom: 54px;
+    background: var(--paper); color: var(--ink);
+    font-family: var(--font-condensed); font-weight: 700;
+    font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-align: center; line-height: 1.15;
+    padding: 0.4rem 0.55rem;
+    border: 2px solid var(--ink);
+    transform: rotate(-6deg);
+    box-shadow: 2px 2px 0 var(--ink);
   }
 
-  .hero__stripe { position: absolute; bottom: 0; left: 0; }
-
-  @keyframes rise {
-    to { opacity: 1; transform: none; }
+  /* Marquee ribbon */
+  .hero__ribbon {
+    position: relative; z-index: 1;
+    background: var(--ox);
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    overflow: hidden;
+    padding: 0.55rem 0;
   }
-  @keyframes fade { to { opacity: 1; } }
+  .hero__ribbon-track {
+    display: flex; width: max-content;
+    animation: marquee 38s linear infinite;
+  }
+  .hero__ribbon-track span {
+    font-family: var(--font-condensed); font-weight: 800;
+    font-size: 0.95rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--paper);
+    white-space: nowrap; padding-right: 1rem;
+  }
 
-  @media (max-width: 940px) {
-    .hero__grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      text-align: left;
-    }
-    .hero__media {
-      justify-self: start;
-      max-width: 360px;
-      order: -1;
-    }
-    .hero__lede { max-width: 52ch; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @keyframes stamp { to { opacity: 1; transform: none; } }
+  @keyframes stampseal { 60% { transform: rotate(8deg) scale(1.12); } to { transform: rotate(8deg) scale(1); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  @media (max-width: 900px) {
+    .hero__inner { grid-template-columns: 1fr; gap: 2.75rem; }
+    .hero__media { justify-self: start; max-width: 330px; order: -1; }
+    .hero__lede { max-width: 54ch; }
   }
   @media (max-width: 560px) {
-    .hero__creds { gap: 1.25rem; }
-    .hero__creds li { max-width: 7.5rem; }
-    .hero__badge { width: 68px; height: 68px; top: -16px; right: -16px; }
+    .hero__name { font-size: clamp(2.4rem, 11.5vw, 4rem); letter-spacing: -0.03em; text-shadow: 3px 3px 0 var(--ox); }
+    .hero__name--2 { text-shadow: 3px 3px 0 var(--ink-2); }
+    .hero__record { gap: 1.5rem; }
+    .hero__seal { width: 92px; height: 92px; top: -22px; right: -16px; }
+    .hero__seal-ring { width: 72px; height: 72px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero__eyebrow, .hero__line, .hero__lede, .hero__actions,
-    .hero__creds, .hero__media { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .hero__kicker, .hero__pre, .hero__name, .hero__slogan, .hero__lede,
+    .hero__actions, .hero__record, .hero__media, .hero__seal {
+      opacity: 1 !important; transform: none !important; animation: none !important;
+    }
+    .hero__rays, .hero__ribbon-track { animation: none !important; }
+    .hero__seal { transform: rotate(8deg) !important; }
+    .hero__portrait { transform: rotate(-1.5deg) !important; }
   }
 </style>
