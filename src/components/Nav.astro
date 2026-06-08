@@ -1,0 +1,179 @@
+---
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#issues', label: 'Issues' },
+  { href: '#vision', label: 'Vision' },
+  { href: '#act', label: 'Get Involved' },
+];
+const donate = 'https://secure.winred.com/';
+---
+
+<header class="nav" data-nav>
+  <div class="container--wide nav__inner">
+    <a href="#top" class="brand" aria-label="Bert Mizusawa for U.S. Senate — home">
+      <span class="brand__mark" aria-hidden="true">
+        <span class="brand__star">&#9733;</span>
+      </span>
+      <span class="brand__text">
+        <strong>BERT MIZUSAWA</strong>
+        <em>U.S. Senate &middot; Virginia</em>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="nav__cta">
+      <a href={donate} class="btn btn--sm" target="_blank" rel="noopener">
+        Donate
+      </a>
+      <button class="nav__toggle" data-toggle aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__mobile" data-mobile hidden>
+    {links.map((l) => <a href={l.href} data-mobile-link>{l.label}</a>)}
+    <a href={donate} class="btn" target="_blank" rel="noopener">Donate Now</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--ink) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--on-navy-line);
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 74px;
+  }
+
+  .brand { display: flex; align-items: center; gap: 0.85rem; }
+  .brand__mark {
+    width: 42px; height: 42px;
+    display: grid; place-items: center;
+    background: var(--red);
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .brand__star { color: var(--white); font-size: 1.15rem; line-height: 1; }
+  .brand__text { display: flex; flex-direction: column; line-height: 1; }
+  .brand__text strong {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    font-size: 1.02rem;
+    color: var(--white);
+  }
+  .brand__text em {
+    font-style: normal;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--on-navy-soft);
+    margin-top: 4px;
+  }
+
+  .nav__links { display: flex; gap: 2rem; }
+  .nav__links a {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--on-navy-soft);
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.2s var(--ease);
+  }
+  .nav__links a::after {
+    content: "";
+    position: absolute; left: 0; right: 100%; bottom: -2px;
+    height: 2px; background: var(--red);
+    transition: right 0.25s var(--ease);
+  }
+  .nav__links a:hover { color: var(--white); }
+  .nav__links a:hover::after { right: 0; }
+
+  .nav__cta { display: flex; align-items: center; gap: 0.75rem; }
+
+  .nav__toggle {
+    display: none;
+    width: 42px; height: 42px;
+    background: transparent;
+    border: 1px solid var(--on-navy-line);
+    border-radius: 3px;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 5px;
+  }
+  .nav__toggle span {
+    width: 18px; height: 2px; background: var(--on-navy);
+    transition: transform 0.25s var(--ease), opacity 0.2s var(--ease);
+  }
+  .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav__mobile {
+    display: none;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem var(--gutter) 1.5rem;
+    background: var(--ink);
+    border-bottom: 1px solid var(--on-navy-line);
+  }
+  .nav__mobile a:not(.btn) {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--on-navy);
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--on-navy-line);
+  }
+  .nav__mobile .btn { margin-top: 0.75rem; justify-content: center; }
+
+  @media (max-width: 880px) {
+    .nav__links { display: none; }
+    .nav__toggle { display: flex; }
+    .nav__mobile[data-open] { display: flex; }
+  }
+  @media (max-width: 420px) {
+    .nav__cta .btn--sm { display: none; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('[data-toggle]');
+  const mobile = document.querySelector('[data-mobile]');
+  if (toggle && mobile) {
+    const close = () => {
+      mobile.removeAttribute('data-open');
+      mobile.setAttribute('hidden', '');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    toggle.addEventListener('click', () => {
+      const open = mobile.hasAttribute('data-open');
+      if (open) { close(); }
+      else {
+        mobile.setAttribute('data-open', '');
+        mobile.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+    mobile.querySelectorAll('[data-mobile-link]').forEach((l) =>
+      l.addEventListener('click', close)
+    );
+  }
+</script>

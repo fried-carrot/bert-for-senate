@@ -1,0 +1,77 @@
+---
+---
+
+<section class="vision section" id="vision">
+  <div class="container vision__inner">
+    <span class="vision__star" aria-hidden="true">&#9733;</span>
+    <p class="eyebrow vision__eyebrow" data-reveal>The Vision</p>
+    <blockquote class="vision__quote" data-reveal data-reveal-delay="1">
+      &ldquo;I took an oath to defend this country once. I am asking Virginia
+      for the chance to keep that oath in the United States Senate &mdash; with
+      <em>strong, principled leadership</em> that answers to you, and no one else.&rdquo;
+    </blockquote>
+    <p class="vision__attr" data-reveal data-reveal-delay="2">
+      <strong>Bert Mizusawa</strong>
+      <span>Maj. Gen., U.S. Army (Ret.) &middot; Candidate for U.S. Senate</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .vision {
+    background: var(--paper);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .vision::before, .vision::after {
+    content: "";
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    width: min(640px, 70%);
+    height: 6px;
+    background: repeating-linear-gradient(90deg, var(--red) 0 40px, transparent 40px 52px);
+    opacity: 0.5;
+  }
+  .vision::before { top: clamp(2rem, 4vw, 3.5rem); }
+  .vision::after { bottom: clamp(2rem, 4vw, 3.5rem); }
+
+  .vision__inner { max-width: 880px; }
+  .vision__star {
+    display: inline-block;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .vision__eyebrow { justify-content: center; }
+  .vision__quote {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1rem + 2.4vw, 2.65rem);
+    line-height: 1.28;
+    color: var(--navy);
+    margin: 1.5rem 0 2rem;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .vision__quote em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .vision__attr { line-height: 1.5; }
+  .vision__attr strong {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    font-size: 1.05rem;
+  }
+  .vision__attr span {
+    font-size: 0.84rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>

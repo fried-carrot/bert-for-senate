@@ -1,0 +1,138 @@
+---
+const donate = 'https://secure.winred.com/';
+const amounts = ['25', '50', '100', '250'];
+---
+
+<section class="act section" id="act">
+  <div class="container--wide act__grid">
+    <div class="act__lead" data-reveal>
+      <p class="eyebrow eyebrow--light">Join the Movement</p>
+      <h2 class="display act__title">
+        Virginia<br />needs you<br /><span>now.</span>
+      </h2>
+      <p class="lede act__lede">
+        This campaign is powered by Virginians who refuse to sit on the
+        sidelines. Stand up, volunteer, and help send proven leadership to the
+        Senate.
+      </p>
+      <div class="act__cta">
+        <a href="#act" class="btn btn--on-navy">Volunteer Today</a>
+        <a href="mailto:info@bertforsenate.com" class="btn btn--on-navy">Contact the Team</a>
+      </div>
+    </div>
+
+    <div class="act__card" data-reveal data-reveal-delay="1">
+      <div class="act__card-head">
+        <span class="act__chip">Contribute</span>
+        <h3>Chip in to the cause</h3>
+        <p>Every dollar goes straight to putting boots on the ground across the Commonwealth.</p>
+      </div>
+      <div class="act__amounts">
+        {amounts.map((a) => (
+          <a href={donate} target="_blank" rel="noopener" class="act__amount">${a}</a>
+        ))}
+      </div>
+      <a href={donate} target="_blank" rel="noopener" class="btn act__donate">
+        Donate Now
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <p class="act__fine">Secure contribution processed by WinRed.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .act {
+    background: linear-gradient(150deg, var(--red-700), var(--red) 70%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .act::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1.4px);
+    background-size: 28px 28px;
+    opacity: 0.6;
+  }
+  .act__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .act__title {
+    font-size: clamp(2.6rem, 1.6rem + 4.5vw, 5.5rem);
+    color: var(--white);
+    margin: 1rem 0 1.5rem;
+  }
+  .act__title span { color: var(--ink); }
+  .act__lede { color: rgba(255,255,255,0.9); max-width: 42ch; }
+  .act__cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+  .act__cta .btn--on-navy { border-color: rgba(255,255,255,0.45); color: var(--white); }
+  .act__cta .btn--on-navy:hover { background: var(--white); color: var(--red-700); border-color: var(--white); }
+
+  .act__card {
+    background: var(--paper-2);
+    color: var(--text);
+    border-radius: 8px;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    box-shadow: var(--shadow-lift);
+    border-top: 5px solid var(--navy);
+  }
+  .act__chip {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+    background: rgba(200,16,46,0.1);
+    padding: 0.35rem 0.7rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+  .act__card-head h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+  }
+  .act__card-head p { color: var(--text-soft); font-size: 0.95rem; }
+
+  .act__amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    margin: 1.5rem 0 1rem;
+  }
+  .act__amount {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-align: center;
+    padding: 0.85rem 0.25rem;
+    border: 2px solid var(--line-strong);
+    border-radius: 4px;
+    color: var(--navy);
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease);
+  }
+  .act__amount:hover { border-color: var(--red); background: var(--red); color: var(--white); }
+
+  .act__donate { width: 100%; justify-content: center; }
+  .act__fine {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.9rem;
+  }
+
+  @media (max-width: 900px) {
+    .act__grid { grid-template-columns: 1fr; }
+  }
+</style>
