@@ -1,5 +1,13 @@
 ---
 const donate = 'https://secure.winred.com/';
+
+const planks = [
+  'Service Before Self', 'Faith & Family', 'Strong Defense',
+  'Lower Taxes', 'Energy Independence', 'Honor Our Veterans',
+];
+// One sequence is repeated so it always exceeds the widest viewport,
+// then duplicated once; translateX(-50%) loops seamlessly.
+const seq = [...planks, ...planks, ...planks];
 ---
 
 <section class="hero" id="top">
@@ -65,8 +73,8 @@ const donate = 'https://secure.winred.com/';
 
   <div class="hero__ribbon" aria-hidden="true">
     <div class="hero__ribbon-track">
-      <span>&#9733; Service Before Self &#9733; Faith &amp; Family &#9733; Strong Defense &#9733; Lower Taxes &#9733; Energy Independence &#9733; Honor Our Veterans </span>
-      <span>&#9733; Service Before Self &#9733; Faith &amp; Family &#9733; Strong Defense &#9733; Lower Taxes &#9733; Energy Independence &#9733; Honor Our Veterans </span>
+      <div class="hero__ribbon-seq">{seq.map((p) => <span>{p}</span>)}</div>
+      <div class="hero__ribbon-seq">{seq.map((p) => <span>{p}</span>)}</div>
     </div>
   </div>
 </section>
@@ -283,13 +291,22 @@ const donate = 'https://secure.winred.com/';
   }
   .hero__ribbon-track {
     display: flex; width: max-content;
-    animation: marquee 38s linear infinite;
+    animation: marquee 60s linear infinite;
+    will-change: transform;
   }
-  .hero__ribbon-track span {
+  .hero__ribbon-seq { display: flex; flex: 0 0 auto; }
+  .hero__ribbon-seq span {
+    display: inline-flex; align-items: center;
     font-family: var(--font-condensed); font-weight: 800;
     font-size: 0.95rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--paper);
-    white-space: nowrap; padding-right: 1rem;
+    white-space: nowrap; padding-right: 1.8rem;
+  }
+  .hero__ribbon-seq span::before {
+    content: "\2605";
+    margin-right: 1.8rem;
+    color: rgba(241, 230, 205, 0.66);
+    font-size: 0.8em;
   }
 
   @keyframes rise { to { opacity: 1; transform: none; } }
