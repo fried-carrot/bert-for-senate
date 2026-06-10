@@ -36,7 +36,7 @@
   /* Type */
   --font-poster:    'Ultra', Georgia, serif;            /* fat slab — mastheads, drop numerals */
   --font-condensed: 'Big Shoulders Display', sans-serif; /* tall condensed — headlines, labels */
-  --font-body:      'Lora', Georgia, serif;              /* warm, readable body serif */
+  --font-body:      'Public Sans', system-ui, sans-serif; /* clean civic sans — body */
 
   /* Rhythm */
   --container: 1180px;

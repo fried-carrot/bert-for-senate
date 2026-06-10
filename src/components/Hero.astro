@@ -64,7 +64,7 @@ const base = import.meta.env.BASE_URL;
       <span class="hero__seal" aria-hidden="true">
         <span class="hero__seal-ring">
           <span class="hero__seal-stars">&#9733;&#9733;</span>
-          <span class="hero__seal-top">Major General</span>
+          <span class="hero__seal-top">Major<br />General</span>
           <span class="hero__seal-bottom">U.S. Army</span>
         </span>
       </span>
@@ -261,14 +261,18 @@ const base = import.meta.env.BASE_URL;
     text-align: center;
     position: relative;
   }
-  .hero__seal-stars { font-size: 0.85rem; letter-spacing: -1px; display: block; margin-bottom: 1px; }
+  .hero__seal-stars { font-size: 0.8rem; letter-spacing: -1px; display: block; margin-bottom: 2px; }
   .hero__seal-top, .hero__seal-bottom {
     display: block;
     font-family: var(--font-condensed); font-weight: 800;
-    text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.05;
+    text-transform: uppercase; letter-spacing: 0.03em;
   }
-  .hero__seal-top { font-size: 0.74rem; }
-  .hero__seal-bottom { font-size: 0.64rem; color: var(--ochre-2); margin-top: 1px; }
+  .hero__seal-top { font-size: 0.82rem; line-height: 0.94; }
+  .hero__seal-bottom {
+    font-size: 0.6rem; color: var(--ochre-2); margin-top: 4px;
+    padding-top: 3px; letter-spacing: 0.12em;
+    border-top: 1px solid rgba(241, 230, 205, 0.4);
+  }
 
   .hero__corner {
     position: absolute; left: -16px; bottom: 54px;
