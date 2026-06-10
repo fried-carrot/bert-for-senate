@@ -60,9 +60,9 @@ const donate = 'https://secure.winred.com/';
     border-bottom: 1px solid var(--line-cream);
   }
   .mast__edition-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     height: 30px;
     font-family: var(--font-condensed);
     font-weight: 600;
@@ -70,17 +70,21 @@ const donate = 'https://secure.winred.com/';
     letter-spacing: 0.28em;
     text-transform: uppercase;
   }
-  .mast__edition-mid { color: var(--ochre-2); }
+  .mast__edition-row > span:first-child { justify-self: start; }
+  .mast__edition-mid { color: var(--ochre-2); justify-self: center; }
+  .mast__edition-row > span:last-child { justify-self: end; }
 
   .mast__bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     gap: 1.5rem;
     height: 70px;
   }
 
-  .mast__brand { display: flex; align-items: center; gap: 0.85rem; }
+  .mast__brand { display: flex; align-items: center; gap: 0.85rem; justify-self: start; }
+  .mast__links { justify-self: center; }
+  .mast__cta { justify-self: end; }
   .mast__seal {
     display: grid; place-items: center;
     width: 40px; height: 40px;

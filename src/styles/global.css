@@ -31,7 +31,7 @@
 
   /* On-ink */
   --on-ink:      #f1e6cd;
-  --on-ink-soft: #c6b49a;
+  --on-ink-soft: #ddd3bd;  /* lighter cream — readable body text on navy */
 
   /* Type */
   --font-poster:    'Ultra', Georgia, serif;            /* fat slab — mastheads, drop numerals */
