@@ -1,0 +1,138 @@
+---
+const links = [
+  { href: '#record', label: 'The Record' },
+  { href: '#commitments', label: 'Commitments' },
+  { href: '#virginia', label: 'Virginia' },
+];
+const donate = 'https://secure.winred.com/';
+---
+
+<header class="nav" data-nav>
+  <div class="wrap-wide nav__row">
+    <a href="#top" class="nav__mark" aria-label="Bert Mizusawa for U.S. Senate — home">
+      <span class="nav__name">Mizusawa</span>
+      <span class="nav__sub">for U.S. Senate</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="nav__end">
+      <a href="#stand" class="nav__cta-text">Stand with Bert</a>
+      <a href={donate} class="btn btn--sm" target="_blank" rel="noopener">Donate</a>
+      <button class="nav__burger" data-burger aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__sheet" data-sheet hidden>
+    {links.map((l) => <a href={l.href} data-sheet-link>{l.label}</a>)}
+    <a href="#stand" data-sheet-link>Stand with Bert</a>
+    <a href={donate} class="btn" target="_blank" rel="noopener">Donate</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: var(--z-sticky);
+    transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+    border-bottom: 1px solid transparent;
+  }
+  .nav[data-scrolled] {
+    background: oklch(0.18 0.016 256 / 0.82);
+    backdrop-filter: blur(14px) saturate(1.1);
+    border-bottom-color: var(--line-soft);
+  }
+  .nav__row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; height: 78px;
+  }
+  .nav__mark { display: flex; flex-direction: column; line-height: 1; }
+  .nav__name {
+    font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    font-size: 1.18rem; color: var(--bone);
+  }
+  .nav__sub {
+    font-family: var(--font-ui); font-weight: 500;
+    font-size: 0.66rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--brass); margin-top: 5px;
+  }
+
+  .nav__links { display: flex; gap: 2.4rem; }
+  .nav__links a {
+    font-family: var(--font-ui); font-weight: 600;
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--bone-dim); position: relative; padding: 0.4rem 0;
+    transition: color 0.25s var(--ease-out);
+  }
+  .nav__links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+    background: var(--brass); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s var(--ease-out);
+  }
+  .nav__links a:hover { color: var(--bone); }
+  .nav__links a:hover::after { transform: scaleX(1); }
+
+  .nav__end { display: flex; align-items: center; gap: 1.5rem; }
+  .nav__cta-text {
+    font-family: var(--font-ui); font-weight: 600; font-size: 0.82rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--bone-dim);
+    transition: color 0.25s var(--ease-out);
+  }
+  .nav__cta-text:hover { color: var(--brass-bright); }
+  .btn--sm { padding: 0.6rem 1.15rem; font-size: 0.8rem; }
+
+  .nav__burger {
+    display: none; width: 40px; height: 40px;
+    flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    border: 1px solid var(--line);
+  }
+  .nav__burger span { width: 18px; height: 1.5px; background: var(--bone); transition: transform 0.3s var(--ease-out), opacity 0.2s; }
+  .nav__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(3.75px) rotate(45deg); }
+  .nav__burger[aria-expanded="true"] span:nth-child(2) { transform: translateY(-3.75px) rotate(-45deg); }
+
+  .nav__sheet {
+    display: none; flex-direction: column; gap: 0.25rem;
+    padding: 1rem var(--gutter) 1.75rem;
+    background: var(--bg-deep); border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__sheet a:not(.btn) {
+    font-family: var(--font-ui); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; font-size: 0.95rem; color: var(--bone);
+    padding: 0.95rem 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .nav__sheet .btn { margin-top: 1rem; justify-content: center; }
+
+  @media (max-width: 900px) {
+    .nav__links, .nav__cta-text { display: none; }
+    .nav__burger { display: flex; }
+    .nav__sheet[data-open] { display: flex; }
+  }
+  @media (max-width: 460px) {
+    .nav__end .btn--sm { display: none; }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('[data-nav]');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav?.setAttribute('data-scrolled', '');
+    else nav?.removeAttribute('data-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const burger = document.querySelector('[data-burger]');
+  const sheet = document.querySelector('[data-sheet]');
+  if (burger && sheet) {
+    const close = () => { sheet.removeAttribute('data-open'); sheet.setAttribute('hidden',''); burger.setAttribute('aria-expanded','false'); };
+    burger.addEventListener('click', () => {
+      if (sheet.hasAttribute('data-open')) close();
+      else { sheet.setAttribute('data-open',''); sheet.removeAttribute('hidden'); burger.setAttribute('aria-expanded','true'); }
+    });
+    sheet.querySelectorAll('[data-sheet-link]').forEach((l) => l.addEventListener('click', close));
+  }
+</script>

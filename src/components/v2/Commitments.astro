@@ -1,0 +1,85 @@
+---
+const items = [
+  { t: 'Secure Borders', d: 'Back the rule of law and the officers who enforce it. A nation that will not defend its borders cannot defend anything else.' },
+  { t: 'Lower Taxes', d: 'Let Virginians keep more of what they earn. Cut the waste, free small business, and reward work over Washington.' },
+  { t: 'A Military Second to None', d: 'Fund the force, modernize the arsenal, and confront the adversaries who test American resolve.' },
+  { t: 'American Energy', d: 'Power the Commonwealth with affordable, reliable, domestic energy instead of the mercy of foreign suppliers.' },
+  { t: 'Constitutional Freedom', d: 'Defend the rights of every citizen without apology, from the First Amendment to the Second.' },
+  { t: 'Faith with Veterans', d: 'Deliver the care, the respect, and the opportunity our servicemembers were promised. No one left behind.' },
+];
+---
+
+<section class="com section" id="commitments">
+  <div class="wrap-wide">
+    <header class="com__head">
+      <h2 class="display com__title rise">Where he stands</h2>
+      <p class="serif-lead com__intro rise" data-d="1">
+        Six commitments to Virginia, written in plain language and meant to be
+        held against the record.
+      </p>
+    </header>
+
+    <ol class="com__list">
+      {items.map((it) => (
+        <li class="com__row rise">
+          <a class="com__link" href="#stand">
+            <h3 class="com__rowtitle">{it.t}</h3>
+            <p class="com__rowdesc">{it.d}</p>
+            <span class="com__mark" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .com { background: var(--bg-deep); border-block: 1px solid var(--line-soft); }
+  .com__head {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: end;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .com__title { font-size: clamp(2.2rem, 1.4rem + 3.2vw, 4.2rem); }
+  .com__intro { color: var(--bone-dim); max-width: 40ch; justify-self: end; }
+
+  .com__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .com__row { border-bottom: 1px solid var(--line); }
+  .com__link {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr) auto;
+    gap: clamp(1.5rem, 4vw, 4rem); align-items: center;
+    padding: clamp(1.6rem, 3vw, 2.4rem) 0.5rem;
+    position: relative;
+  }
+  .com__link::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, oklch(0.76 0.095 80 / 0.10), transparent 60%);
+    opacity: 0; transition: opacity 0.35s var(--ease-out);
+  }
+  .com__link:hover::before, .com__link:focus-visible::before { opacity: 1; }
+
+  .com__rowtitle {
+    font-family: var(--font-display); font-weight: 800; font-stretch: 118%;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    font-size: clamp(1.5rem, 1rem + 2vw, 2.6rem); line-height: 1;
+    color: var(--bone);
+    transition: color 0.3s var(--ease-out), transform 0.35s var(--ease-out);
+  }
+  .com__link:hover .com__rowtitle, .com__link:focus-visible .com__rowtitle { transform: translateX(10px); }
+  .com__link:hover .com__rowtitle, .com__link:focus-visible .com__rowtitle { color: var(--brass-bright); }
+  .com__rowdesc { color: var(--bone-dim); max-width: 52ch; position: relative; }
+  .com__mark {
+    font-size: 1.4rem; color: var(--brass);
+    opacity: 0; transform: translateX(-8px);
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    position: relative;
+  }
+  .com__link:hover .com__mark, .com__link:focus-visible .com__mark { opacity: 1; transform: none; }
+
+  @media (max-width: 880px) {
+    .com__head { grid-template-columns: 1fr; }
+    .com__intro { justify-self: start; }
+    .com__link { grid-template-columns: 1fr; gap: 0.6rem; }
+    .com__mark { display: none; }
+  }
+</style>

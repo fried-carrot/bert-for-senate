@@ -1,0 +1,176 @@
+---
+const base = import.meta.env.BASE_URL;
+const donate = 'https://secure.winred.com/';
+const facts = ['Maj. Gen., U.S. Army (Ret.)', 'Army Ranger', 'Combat-decorated', 'Lifelong Virginian'];
+---
+
+<section class="hero" id="top">
+  <div class="hero__atmos" aria-hidden="true">
+    <span class="hero__glow"></span>
+    <span class="hero__grid"></span>
+  </div>
+
+  <div class="wrap-wide hero__inner">
+    <div class="hero__copy">
+      <p class="label hero__kicker">Virginia &middot; United States Senate</p>
+
+      <h1 class="display hero__name">
+        <span class="hero__name-l">Bert</span>
+        <span class="hero__name-l hero__name-l--2">Mizusawa</span>
+      </h1>
+
+      <span class="hero__seam" aria-hidden="true"></span>
+
+      <p class="serif-lead hero__oath">
+        Thirty-four years in uniform. One oath &mdash; kept, not promised. Now
+        he is asking Virginia for the chance to keep it in the United States Senate.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#stand" class="btn">Stand with Bert <span class="ico" aria-hidden="true">&rarr;</span></a>
+        <a href="#record" class="btn btn--ghost">His record</a>
+      </div>
+
+      <ul class="hero__facts">
+        {facts.map((f) => <li>{f}</li>)}
+      </ul>
+    </div>
+
+    <figure class="hero__portrait">
+      <img
+        src={`${base}img/candidate.jpg`}
+        alt="Maj. Gen. Bert Mizusawa in U.S. Army dress uniform"
+        width="1100" height="1375" fetchpriority="high"
+      />
+      <figcaption>Maj. Gen. Bert Mizusawa &middot; U.S. Army, Retired</figcaption>
+    </figure>
+  </div>
+
+  <a href="#record" class="hero__scroll" aria-label="Scroll to his record">
+    <span>Scroll</span>
+    <span class="hero__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative; isolation: isolate;
+    min-height: clamp(640px, 94svh, 1000px);
+    display: flex; align-items: center;
+    padding-block: clamp(6rem, 12vh, 9rem) clamp(4rem, 8vh, 6rem);
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .hero__atmos { position: absolute; inset: 0; z-index: -1; }
+  .hero__glow {
+    position: absolute; right: -8%; top: 8%;
+    width: min(60vw, 760px); aspect-ratio: 1;
+    background: radial-gradient(circle, oklch(0.76 0.095 80 / 0.20), transparent 64%);
+    filter: blur(8px);
+  }
+  .hero__grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: clamp(80px, 12vw, 150px) 100%;
+    mask-image: linear-gradient(180deg, transparent, black 40%, black 75%, transparent);
+    opacity: 0.5;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
+    width: var(--wide);
+  }
+
+  .hero__kicker { color: var(--brass); }
+
+  .hero__name {
+    font-size: clamp(3rem, 1.6rem + 6.5vw, 6rem);
+    margin: 1.1rem 0 0;
+    line-height: 0.92;
+  }
+  .hero__name-l { display: block; }
+  .hero__name-l--2 { color: var(--brass-bright); }
+
+  .hero__seam {
+    display: block; width: 80px; height: 3px;
+    background: var(--brass); margin: 1.5rem 0;
+    transform-origin: left;
+  }
+  .hero__oath { max-width: 30ch; color: var(--bone); }
+
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
+
+  .hero__facts {
+    list-style: none; padding: 0; margin-top: 2.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.65rem 1.5rem;
+    font-family: var(--font-ui); font-weight: 500;
+    font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero__facts li { position: relative; padding-left: 1.2rem; }
+  .hero__facts li::before {
+    content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 5px; height: 5px; background: var(--brass); border-radius: 50%;
+  }
+
+  /* Portrait */
+  .hero__portrait { position: relative; margin: 0; justify-self: end; width: 100%; max-width: 480px; }
+  .hero__portrait img {
+    width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 16%;
+    filter: url(#v2-bronze) contrast(1.04);
+    -webkit-mask-image: radial-gradient(125% 120% at 65% 35%, black 58%, transparent 100%);
+    mask-image: radial-gradient(125% 120% at 65% 35%, black 58%, transparent 100%);
+  }
+  .hero__portrait::after {
+    content: ""; position: absolute; inset: 0;
+    box-shadow: inset 0 0 0 1px var(--line-brass);
+    -webkit-mask-image: radial-gradient(125% 120% at 65% 35%, black 58%, transparent 100%);
+    mask-image: radial-gradient(125% 120% at 65% 35%, black 58%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero__portrait figcaption {
+    margin-top: 1rem; text-align: right;
+    font-family: var(--font-ui); font-weight: 500;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero__scroll {
+    position: absolute; left: var(--gutter); bottom: 1.75rem;
+    display: flex; align-items: center; gap: 0.85rem;
+    font-family: var(--font-ui); font-weight: 600; font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+  .hero__scroll-line { width: 54px; height: 1px; background: var(--line); position: relative; overflow: hidden; }
+  .hero__scroll-line::after {
+    content: ""; position: absolute; inset: 0; width: 40%; background: var(--brass);
+    animation: scrollcue 2.4s var(--ease-out) infinite;
+  }
+  @keyframes scrollcue { 0% { transform: translateX(-100%); } 60%,100% { transform: translateX(260%); } }
+
+  /* Orchestrated load — not gated on scroll, content is above the fold */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__kicker, .hero__name-l, .hero__oath, .hero__actions, .hero__facts { animation: heroRise 0.9s var(--ease-out) both; }
+    .hero__kicker { animation-delay: 0.05s; }
+    .hero__name-l { animation-delay: 0.14s; }
+    .hero__name-l--2 { animation-delay: 0.24s; }
+    .hero__oath { animation-delay: 0.42s; }
+    .hero__actions { animation-delay: 0.52s; }
+    .hero__facts { animation-delay: 0.6s; }
+    .hero__seam { animation: heroSeam 0.8s var(--ease-out) 0.34s both; }
+    .hero__portrait { animation: heroFade 1.2s var(--ease-out) 0.2s both; }
+  }
+  @keyframes heroRise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+  @keyframes heroSeam { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes heroFade { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 920px) {
+    .hero__inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero__portrait { order: -1; justify-self: start; max-width: 360px; }
+    .hero__oath { max-width: 46ch; }
+    .hero__scroll { display: none; }
+  }
+</style>

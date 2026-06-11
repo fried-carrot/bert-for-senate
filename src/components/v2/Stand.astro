@@ -1,0 +1,209 @@
+---
+const donate = 'https://secure.winred.com/';
+const tiers = ['25', '50', '100', '250'];
+---
+
+<section class="stand section" id="stand">
+  <div class="wrap-wide stand__grid">
+    <div class="stand__lead rise">
+      <h2 class="display stand__title">Stand<br />with Bert</h2>
+      <p class="serif-lead stand__sub">
+        This campaign runs on Virginians, not Washington. Add your name, then
+        chip in what you can. Every signature and every dollar is a soldier on the line.
+      </p>
+
+      <div class="stand__give">
+        <span class="label">Chip in</span>
+        <div class="stand__tiers">
+          {tiers.map((t) => (
+            <a class="stand__tier" href={donate} target="_blank" rel="noopener">${t}</a>
+          ))}
+          <a class="stand__tier stand__tier--other" href={donate} target="_blank" rel="noopener">Other</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stand__formwrap rise" data-d="1">
+      <form class="form" data-form novalidate>
+        <p class="form__title">Add your name</p>
+
+        <div class="field">
+          <label for="f-name">Full name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name"
+                 required aria-describedby="e-name" />
+          <span class="field__err" id="e-name" data-err-for="name" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email"
+                 inputmode="email" required aria-describedby="e-email" />
+          <span class="field__err" id="e-email" data-err-for="email" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <label for="f-zip">ZIP code</label>
+          <input id="f-zip" name="zip" type="text" inputmode="numeric"
+                 autocomplete="postal-code" maxlength="5" required aria-describedby="e-zip" />
+          <span class="field__err" id="e-zip" data-err-for="zip" role="alert"></span>
+        </div>
+
+        <!-- honeypot -->
+        <div class="hp" aria-hidden="true">
+          <label>Leave blank<input name="company" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <button type="submit" class="btn form__submit" data-submit>
+          Count me in <span class="ico" aria-hidden="true">&rarr;</span>
+        </button>
+        <p class="form__fine">No spam. Unsubscribe anytime. We never sell your information.</p>
+      </form>
+
+      <div class="form__done" data-done hidden role="status">
+        <span class="form__check" aria-hidden="true">&#10003;</span>
+        <p class="form__donetitle">You&rsquo;re on the team.</p>
+        <p class="form__donebody">Welcome aboard, <strong data-done-name>friend</strong>. Watch your inbox for the next orders &mdash; then make it official below.</p>
+        <a href={donate} class="btn" target="_blank" rel="noopener">Donate now <span class="ico" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stand { background: var(--bg); }
+  .stand__grid {
+    display: grid; grid-template-columns: 1fr 0.9fr;
+    gap: clamp(2.5rem, 6vw, 5.5rem); align-items: center;
+  }
+  .stand__title { font-size: clamp(2.6rem, 1.6rem + 4vw, 5rem); line-height: 0.92; }
+  .stand__sub { color: var(--bone-dim); max-width: 42ch; margin-top: 1.5rem; }
+
+  .stand__give { margin-top: 2.5rem; }
+  .stand__give .label { display: block; margin-bottom: 0.85rem; }
+  .stand__tiers { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .stand__tier {
+    font-family: var(--font-display); font-weight: 700; font-stretch: 110%;
+    font-size: 1.15rem; padding: 0.7rem 1.25rem;
+    border: 1px solid var(--line); color: var(--bone);
+    border-radius: 2px; transition: all 0.25s var(--ease-out);
+  }
+  .stand__tier:hover { border-color: var(--brass); color: var(--brass-bright); transform: translateY(-2px); }
+  .stand__tier--other { font-stretch: 100%; font-size: 0.92rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bone-dim); }
+
+  /* Form */
+  .stand__formwrap {
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-radius: 3px; padding: clamp(1.75rem, 3vw, 2.5rem);
+    box-shadow: 0 30px 80px -40px oklch(0 0 0 / 0.7);
+  }
+  .form__title {
+    font-family: var(--font-display); font-weight: 800; font-stretch: 115%;
+    text-transform: uppercase; font-size: 1.3rem; color: var(--bone);
+    margin-bottom: 1.5rem; letter-spacing: -0.01em;
+  }
+  .field { margin-bottom: 1.1rem; }
+  .field label {
+    display: block; font-family: var(--font-ui); font-weight: 600;
+    font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.45rem;
+  }
+  .field input {
+    width: 100%; padding: 0.85rem 1rem;
+    background: var(--bg-deep); color: var(--bone);
+    border: 1px solid var(--line); border-radius: 2px;
+    font-family: var(--font-body); font-size: 1.02rem;
+    transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+  }
+  .field input::placeholder { color: var(--muted); }
+  .field input:focus-visible { outline: none; border-color: var(--brass); box-shadow: 0 0 0 3px oklch(0.76 0.095 80 / 0.22); }
+  .field input[aria-invalid="true"] { border-color: oklch(0.62 0.17 28); }
+  .field__err {
+    display: none; margin-top: 0.4rem;
+    font-family: var(--font-ui); font-size: 0.78rem; color: oklch(0.74 0.15 30);
+  }
+  .field__err[data-show] { display: block; }
+
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .form__submit { width: 100%; justify-content: center; margin-top: 0.6rem; }
+  .form__submit[data-busy] { opacity: 0.7; pointer-events: none; }
+  .form__fine { margin-top: 0.9rem; text-align: center; font-size: 0.78rem; color: var(--muted); }
+
+  .form__done { text-align: center; padding: 1rem 0.5rem; }
+  .form__check {
+    display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 1.1rem;
+    border-radius: 50%; background: oklch(0.76 0.095 80 / 0.16);
+    color: var(--brass-bright); font-size: 1.6rem; border: 1px solid var(--line-brass);
+  }
+  .form__donetitle {
+    font-family: var(--font-display); font-weight: 800; font-stretch: 115%;
+    text-transform: uppercase; font-size: 1.5rem; color: var(--bone); margin-bottom: 0.6rem;
+  }
+  .form__donebody { color: var(--bone-dim); max-width: 34ch; margin: 0 auto 1.5rem; }
+  .form__donebody strong { color: var(--brass-bright); font-weight: 600; }
+
+  @media (max-width: 880px) {
+    .stand__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const form = document.querySelector('[data-form]') as HTMLFormElement | null;
+  const wrap = document.querySelector('[data-done]') as HTMLElement | null;
+  if (form && wrap) {
+    const submit = form.querySelector('[data-submit]') as HTMLButtonElement;
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const zipRe = /^\d{5}$/;
+
+    const setErr = (name: string, msg: string) => {
+      const input = form.querySelector(`[name="${name}"]`) as HTMLInputElement;
+      const err = form.querySelector(`[data-err-for="${name}"]`) as HTMLElement;
+      if (msg) {
+        input.setAttribute('aria-invalid', 'true');
+        err.textContent = msg; err.setAttribute('data-show', '');
+      } else {
+        input.removeAttribute('aria-invalid');
+        err.textContent = ''; err.removeAttribute('data-show');
+      }
+      return !msg;
+    };
+
+    const validate = () => {
+      const data = new FormData(form);
+      const name = (data.get('name') as string || '').trim();
+      const email = (data.get('email') as string || '').trim();
+      const zip = (data.get('zip') as string || '').trim();
+      let ok = true;
+      ok = setErr('name', name ? '' : 'Please enter your name.') && ok;
+      ok = setErr('email', emailRe.test(email) ? '' : 'Enter a valid email address.') && ok;
+      ok = setErr('zip', zipRe.test(zip) ? '' : 'Enter a 5-digit ZIP code.') && ok;
+      return ok;
+    };
+
+    // Validate-on-blur once touched
+    form.querySelectorAll('input[required]').forEach((el) => {
+      el.addEventListener('blur', () => { if ((el as HTMLInputElement).value) validate(); });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if ((form.querySelector('[name="company"]') as HTMLInputElement)?.value) return; // honeypot
+      if (!validate()) {
+        (form.querySelector('[aria-invalid="true"]') as HTMLElement)?.focus();
+        return;
+      }
+      submit.setAttribute('data-busy', '');
+      submit.textContent = 'Signing you up…';
+      // No backend yet: simulate the request, then show the success state.
+      // TODO(campaign): POST FormData to your list provider / Formspree endpoint here.
+      window.setTimeout(() => {
+        const name = (new FormData(form).get('name') as string || 'friend').trim().split(' ')[0];
+        const nameEl = wrap.querySelector('[data-done-name]');
+        if (nameEl) nameEl.textContent = name || 'friend';
+        form.setAttribute('hidden', '');
+        wrap.removeAttribute('hidden');
+        wrap.focus?.();
+      }, 700);
+    });
+  }
+</script>

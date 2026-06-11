@@ -1,0 +1,89 @@
+---
+const links = [
+  { href: '#record', label: 'The Record' },
+  { href: '#commitments', label: 'Commitments' },
+  { href: '#virginia', label: 'Virginia' },
+  { href: '#stand', label: 'Stand with Bert' },
+];
+const donate = 'https://secure.winred.com/';
+---
+
+<footer class="foot">
+  <div class="wrap-wide foot__top">
+    <div class="foot__brand">
+      <a href="#top" class="foot__mark" aria-label="Bert Mizusawa for U.S. Senate">
+        <span class="foot__name">Mizusawa</span>
+        <span class="foot__sub">for U.S. Senate &middot; Virginia</span>
+      </a>
+      <p class="foot__line">Duty kept, not promised.</p>
+      <div class="foot__social">
+        <a href="https://facebook.com/BertForSenate2026" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+        <a href="https://instagram.com/bertforsenate2026" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="foot__nav" aria-label="Footer">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={donate} target="_blank" rel="noopener" class="foot__donate">Donate &rarr;</a>
+    </nav>
+  </div>
+
+  <div class="wrap-wide foot__legal">
+    <p>Paid for by Bert for Senate 2026.</p>
+    <p class="foot__disc">
+      Use of military rank, job titles, and photographs in uniform does not imply
+      endorsement by the Department of the Army or the Department of Defense.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .foot { background: var(--bg-deep); border-top: 1px solid var(--line-soft); }
+  .foot__top {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem;
+    padding-block: clamp(3rem, 6vw, 4.5rem) 2.5rem;
+    align-items: start;
+  }
+  .foot__mark { display: inline-flex; flex-direction: column; line-height: 1; }
+  .foot__name {
+    font-family: var(--font-display); font-weight: 800; font-stretch: 115%;
+    text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.5rem; color: var(--bone);
+  }
+  .foot__sub {
+    font-family: var(--font-ui); font-weight: 500; font-size: 0.68rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--brass); margin-top: 6px;
+  }
+  .foot__line { font-family: var(--font-body); font-style: italic; color: var(--bone-dim); margin: 1.25rem 0; }
+  .foot__social { display: flex; gap: 0.6rem; }
+  .foot__social a {
+    width: 40px; height: 40px; display: grid; place-items: center;
+    border: 1px solid var(--line); color: var(--bone-dim); border-radius: 2px;
+    transition: all 0.25s var(--ease-out);
+  }
+  .foot__social a:hover { color: var(--brass-bright); border-color: var(--brass); }
+
+  .foot__nav { display: flex; flex-direction: column; gap: 0.9rem; align-items: start; }
+  .foot__nav a {
+    font-family: var(--font-ui); font-weight: 600; font-size: 0.86rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--bone-dim);
+    transition: color 0.2s var(--ease-out);
+  }
+  .foot__nav a:hover { color: var(--bone); }
+  .foot__donate { color: var(--brass) !important; }
+
+  .foot__legal {
+    border-top: 1px solid var(--line-soft); padding-block: 1.75rem 2.5rem;
+    display: flex; flex-direction: column; gap: 0.6rem;
+    font-family: var(--font-ui); font-size: 0.78rem; color: var(--muted);
+  }
+  .foot__legal > p:first-child { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bone-dim); }
+  .foot__disc { max-width: 72ch; line-height: 1.6; }
+
+  @media (max-width: 720px) {
+    .foot__top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
