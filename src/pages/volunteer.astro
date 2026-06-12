@@ -1,0 +1,351 @@
+---
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL;
+const donate = 'https://secure.winred.com/bert-for-senate/donate-today';
+
+// ── EMBED YOUR GOOGLE FORM HERE ───────────────────────────────────────────
+// In Google Forms: Send → "< >" (Embed HTML) → copy the src="..." URL
+// (it ends with /viewform?embedded=true) and paste it below.
+const googleFormEmbedUrl =
+  'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true';
+// ──────────────────────────────────────────────────────────────────────────
+const isPlaceholder = googleFormEmbedUrl.includes('REPLACE_WITH_YOUR_FORM_ID');
+const formOpenUrl = googleFormEmbedUrl.replace('?embedded=true', '');
+---
+
+<Base title="Volunteer — Bert Mizusawa for U.S. Senate">
+  <header class="vhead">
+    <div class="container--wide vhead__row">
+      <a href={base} class="vhead__brand" aria-label="Bert Mizusawa for U.S. Senate — home">
+        <span class="vhead__seal" aria-hidden="true">&#9733;&#9733;</span>
+        <span>
+          <strong>BERT MIZUSAWA</strong>
+          <em>For U.S. Senate &middot; Virginia</em>
+        </span>
+      </a>
+      <div class="vhead__end">
+        <a href={base} class="vhead__back">&larr; Back to site</a>
+        <a href={donate} class="btn btn--sm" target="_blank" rel="noopener">Donate</a>
+      </div>
+    </div>
+    <div class="stripe-rule" aria-hidden="true"></div>
+  </header>
+
+  <main id="main" class="vmain">
+    <section class="vtitle">
+      <div class="container">
+        <p class="eyebrow eyebrow--ink">Join the Ranks</p>
+        <h1 class="poster vtitle__h">Enlist in the<br /><span>Campaign</span></h1>
+        <p class="lede vtitle__lede">
+          Virginians win this race &mdash; door by door, name by name. Add yours
+          below. First, a quick check to keep the bots out.
+        </p>
+        <div class="rule-stars vtitle__stars" aria-hidden="true">&#9733;&#9733;&#9733;</div>
+      </div>
+    </section>
+
+    <section class="vform">
+      <div class="container vcard">
+        <span class="vcard__corner vcard__corner--tl" aria-hidden="true">&#9733;</span>
+        <span class="vcard__corner vcard__corner--tr" aria-hidden="true">&#9733;</span>
+        <span class="vcard__corner vcard__corner--bl" aria-hidden="true">&#9733;</span>
+        <span class="vcard__corner vcard__corner--br" aria-hidden="true">&#9733;</span>
+
+        <!-- ░░ BOT GATE ░░ -->
+        <div class="gate" data-gate>
+          <p class="gate__chip">&#9733; Security Check &#9733;</p>
+          <h2 class="gate__title">Prove you&rsquo;re a Virginian, not a robot.</h2>
+          <p class="gate__sub">Answer one quick question to unlock the volunteer form.</p>
+
+          <form class="gate__form" data-gateform novalidate>
+            <!-- honeypot: real people never fill this; bots do -->
+            <div class="hp" aria-hidden="true">
+              <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <div class="gate__challenge">
+              <label class="gate__q" id="q-label" for="gate-answer" data-question>
+                What is six plus three?
+              </label>
+              <input id="gate-answer" data-answer type="text" inputmode="numeric"
+                     autocomplete="off" aria-describedby="gate-err"
+                     placeholder="Your answer" required />
+            </div>
+
+            <label class="gate__check">
+              <input type="checkbox" data-human required />
+              <span>I&rsquo;m a real supporter of Bert Mizusawa &mdash; not an automated bot.</span>
+            </label>
+
+            <p class="gate__err" id="gate-err" data-gateerr role="alert" hidden></p>
+
+            <button type="submit" class="btn gate__submit" data-verify>
+              Verify &amp; Continue <span class="arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          </form>
+
+          <noscript>
+            <p class="gate__noscript">
+              This check needs JavaScript. You can still volunteer by
+              <a href={formOpenUrl} target="_blank" rel="noopener">opening the form in a new tab</a>.
+            </p>
+          </noscript>
+        </div>
+
+        <!-- ░░ FORM (revealed after the gate passes) ░░ -->
+        <div class="embed" data-embed hidden>
+          <p class="embed__verified" aria-hidden="true"><span>&#10003;</span> Verified &mdash; welcome aboard</p>
+          {isPlaceholder ? (
+            <div class="embed__placeholder">
+              <p class="embed__phtitle">Volunteer form connects here</p>
+              <p class="embed__phbody">
+                Paste your Google Form embed URL into <code>src/pages/volunteer.astro</code>
+                (marked &ldquo;EMBED YOUR GOOGLE FORM HERE&rdquo;) and it will appear in this frame.
+              </p>
+            </div>
+          ) : (
+            <iframe
+              data-iframe
+              title="Volunteer sign-up form"
+              src="about:blank"
+              data-src={googleFormEmbedUrl}
+              width="100%" height="900" loading="lazy"
+              referrerpolicy="no-referrer">Loading…</iframe>
+          )}
+          <p class="embed__fallback">
+            Trouble seeing the form?
+            <a href={formOpenUrl} target="_blank" rel="noopener">Open it in a new tab.</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="vfoot">
+    <div class="stripe-rule" aria-hidden="true"></div>
+    <div class="container--wide vfoot__row">
+      <p class="vfoot__paid">Paid for by Bert for Senate 2026.</p>
+      <a href={base} class="vfoot__home">Return to bertforsenate.com</a>
+    </div>
+    <p class="container--wide vfoot__disc">
+      Use of military rank, job titles, and photographs in uniform does not imply
+      endorsement by the Department of the Army or the Department of Defense.
+    </p>
+  </footer>
+</Base>
+
+<style>
+  .vhead { background: var(--paper); position: sticky; top: 0; z-index: 50; }
+  .vhead__row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; height: 70px;
+  }
+  .vhead__brand { display: flex; align-items: center; gap: 0.8rem; }
+  .vhead__seal {
+    display: grid; place-items: center; width: 38px; height: 38px;
+    background: var(--ox); color: var(--paper); border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink); font-size: 0.8rem; letter-spacing: -2px;
+    transform: rotate(-3deg);
+  }
+  .vhead__brand strong {
+    display: block; font-family: var(--font-condensed); font-weight: 900;
+    font-size: 1.2rem; color: var(--ink); letter-spacing: 0.01em;
+  }
+  .vhead__brand em {
+    font-style: normal; font-family: var(--font-condensed); font-weight: 600;
+    font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ox);
+  }
+  .vhead__end { display: flex; align-items: center; gap: 1.25rem; }
+  .vhead__back {
+    font-family: var(--font-condensed); font-weight: 700; font-size: 0.84rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+  }
+  .vhead__back:hover { color: var(--ox); }
+
+  .vmain { background: var(--paper); }
+
+  .vtitle { padding: clamp(2.5rem, 6vw, 4.5rem) 0 1.5rem; text-align: center; }
+  .vtitle .eyebrow { justify-content: center; }
+  .vtitle__h {
+    font-size: clamp(2.6rem, 1.6rem + 5vw, 5.5rem);
+    color: var(--ink); margin: 0.85rem 0 1.1rem;
+  }
+  .vtitle__h span { color: var(--ox); }
+  .vtitle__lede { max-width: 48ch; margin: 0 auto; color: var(--ink-text); }
+  .vtitle__stars { color: var(--ochre); justify-content: center; max-width: 260px; margin: 1.5rem auto 0; }
+
+  .vform { padding: 1.5rem 0 clamp(4rem, 8vw, 7rem); }
+  .vcard {
+    position: relative; max-width: 720px;
+    background: var(--paper-2); border: 3px solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ox), 10px 10px 0 3px var(--ink);
+    padding: clamp(1.75rem, 4vw, 3rem);
+  }
+  .vcard::after { content: ""; position: absolute; inset: 9px; border: 1px solid var(--line-strong); pointer-events: none; }
+  .vcard__corner { position: absolute; color: var(--ox); font-size: 0.95rem; z-index: 1; }
+  .vcard__corner--tl { top: 13px; left: 15px; }
+  .vcard__corner--tr { top: 13px; right: 15px; }
+  .vcard__corner--bl { bottom: 13px; left: 15px; }
+  .vcard__corner--br { bottom: 13px; right: 15px; }
+
+  /* Gate */
+  .gate { position: relative; z-index: 2; text-align: center; }
+  .gate__chip {
+    display: inline-block; font-family: var(--font-condensed); font-weight: 800;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--paper); background: var(--ox); padding: 0.3rem 0.7rem;
+    border: 2px solid var(--ink); margin-bottom: 1.1rem;
+  }
+  .gate__title {
+    font-family: var(--font-poster); text-transform: uppercase;
+    font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.1rem); color: var(--ink);
+    line-height: 1; margin-bottom: 0.6rem;
+  }
+  .gate__sub { color: var(--ink-text); margin-bottom: 1.75rem; }
+
+  .gate__form { max-width: 420px; margin: 0 auto; text-align: left; }
+  .gate__challenge { margin-bottom: 1.1rem; }
+  .gate__q {
+    display: block; font-family: var(--font-condensed); font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.05rem;
+    color: var(--ink); margin-bottom: 0.55rem;
+  }
+  .gate__challenge input {
+    width: 100%; padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 1.05rem;
+    background: var(--paper); color: var(--ink-text);
+    border: 2px solid var(--ink); border-radius: 2px;
+  }
+  .gate__challenge input:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ochre); }
+  .gate__challenge input[aria-invalid="true"] { border-color: var(--ox); }
+
+  .gate__check {
+    display: flex; align-items: flex-start; gap: 0.65rem; cursor: pointer;
+    font-size: 0.95rem; color: var(--ink-text); margin-bottom: 1.25rem;
+  }
+  .gate__check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--ox); flex-shrink: 0; }
+
+  .gate__err {
+    font-family: var(--font-condensed); font-weight: 700; letter-spacing: 0.03em;
+    text-transform: uppercase; font-size: 0.85rem; color: var(--ox);
+    margin-bottom: 1rem;
+  }
+  .gate__submit { width: 100%; justify-content: center; }
+  .gate__submit[data-busy] { opacity: 0.7; pointer-events: none; }
+  .gate__noscript { margin-top: 1.25rem; font-size: 0.9rem; color: var(--ink-text); }
+  .gate__noscript a { color: var(--ox); text-decoration: underline; }
+
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* Embed */
+  .embed { position: relative; z-index: 2; }
+  .embed__verified {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-condensed); font-weight: 800; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 0.85rem; color: var(--teal, #2c5048);
+    margin-bottom: 1.25rem;
+  }
+  .embed__verified span {
+    display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ox); color: var(--paper); font-size: 0.8rem;
+  }
+  .embed iframe { border: 2px solid var(--ink); background: var(--paper); display: block; }
+  .embed__placeholder {
+    border: 2px dashed var(--line-strong); padding: 2.5rem 1.5rem; text-align: center;
+    background: var(--paper);
+  }
+  .embed__phtitle { font-family: var(--font-poster); text-transform: uppercase; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.6rem; }
+  .embed__phbody { color: var(--ink-text); font-size: 0.92rem; max-width: 44ch; margin: 0 auto; }
+  .embed__phbody code { font-family: ui-monospace, monospace; font-size: 0.85em; background: var(--paper-2); padding: 1px 4px; }
+  .embed__fallback { margin-top: 1rem; font-size: 0.88rem; color: var(--ink-text); }
+  .embed__fallback a { color: var(--ox); text-decoration: underline; }
+
+  /* Footer */
+  .vfoot { background: var(--ink); color: var(--on-ink-soft); }
+  .vfoot__row {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding-block: 1.75rem 0.75rem; flex-wrap: wrap;
+  }
+  .vfoot__paid {
+    font-family: var(--font-condensed); font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-size: 0.82rem; color: var(--paper);
+  }
+  .vfoot__home {
+    font-family: var(--font-condensed); font-weight: 600; font-size: 0.82rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ochre-2);
+  }
+  .vfoot__home:hover { color: var(--paper); }
+  .vfoot__disc {
+    padding-block: 0 2.25rem; font-family: var(--font-condensed); font-weight: 500;
+    font-size: 0.72rem; letter-spacing: 0.02em; color: var(--on-ink-soft);
+    opacity: 0.7; max-width: 72ch; line-height: 1.6;
+  }
+
+  @media (max-width: 460px) {
+    .vhead__brand em { display: none; }
+    .vhead__back { display: none; }
+  }
+</style>
+
+<script>
+  // ── Bot gate: honeypot + dwell-time + randomized challenge + human checkbox ──
+  const form = document.querySelector('[data-gateform]') as HTMLFormElement | null;
+  const gate = document.querySelector('[data-gate]') as HTMLElement | null;
+  const embed = document.querySelector('[data-embed]') as HTMLElement | null;
+  if (form && gate && embed) {
+    const qLabel = form.querySelector('[data-question]') as HTMLElement;
+    const answerEl = form.querySelector('[data-answer]') as HTMLInputElement;
+    const humanEl = form.querySelector('[data-human]') as HTMLInputElement;
+    const honeypot = form.querySelector('[name="website"]') as HTMLInputElement;
+    const errEl = form.querySelector('[data-gateerr]') as HTMLElement;
+    const verifyBtn = form.querySelector('[data-verify]') as HTMLButtonElement;
+    const iframe = embed.querySelector('[data-iframe]') as HTMLIFrameElement | null;
+
+    const WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
+    const loadedAt = Date.now();
+    let answer = 0;
+
+    const newChallenge = () => {
+      const a = 2 + Math.floor(Math.random() * 7);   // 2..8
+      const b = 1 + Math.floor(Math.random() * 5);   // 1..5
+      answer = a + b;
+      qLabel.textContent = `What is ${WORDS[a]} plus ${WORDS[b]}?`;
+    };
+    newChallenge();
+
+    const showErr = (msg: string) => {
+      errEl.textContent = msg; errEl.hidden = false;
+      answerEl.setAttribute('aria-invalid', 'true');
+    };
+    const clearErr = () => { errEl.hidden = true; answerEl.removeAttribute('aria-invalid'); };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErr();
+
+      // 1) honeypot — only bots fill a hidden field
+      if (honeypot && honeypot.value.trim() !== '') { showErr('Verification failed. Please reload and try again.'); return; }
+      // 2) dwell time — instantaneous submits are automated
+      if (Date.now() - loadedAt < 1500) { showErr('Slow down a moment, then try again.'); return; }
+      // 3) human checkbox
+      if (!humanEl.checked) { showErr('Please confirm you are a real supporter.'); humanEl.focus(); return; }
+      // 4) challenge answer
+      const given = parseInt(answerEl.value.trim(), 10);
+      if (Number.isNaN(given) || given !== answer) {
+        showErr('That answer isn’t right. Try the new question.');
+        newChallenge(); answerEl.value = ''; answerEl.focus();
+        return;
+      }
+
+      // Passed → reveal the form and lazy-load the iframe (only for verified humans)
+      verifyBtn.setAttribute('data-busy', '');
+      verifyBtn.textContent = 'Unlocking…';
+      window.setTimeout(() => {
+        if (iframe && iframe.dataset.src) iframe.src = iframe.dataset.src;
+        gate.setAttribute('hidden', '');
+        embed.removeAttribute('hidden');
+        embed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 450);
+    });
+  }
+</script>

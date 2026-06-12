@@ -1,5 +1,6 @@
 ---
-const donate = 'https://secure.winred.com/';
+const base = import.meta.env.BASE_URL;
+const donate = 'https://secure.winred.com/bert-for-senate/donate-today';
 const amounts = ['25', '50', '100', '250'];
 ---
 
@@ -14,7 +15,7 @@ const amounts = ['25', '50', '100', '250'];
         Step forward, volunteer, and help send proven leadership to the Senate.
       </p>
       <div class="enlist__cta">
-        <a href={donate} class="btn btn--cream" target="_blank" rel="noopener">Volunteer Today</a>
+        <a href={`${base}volunteer`} class="btn btn--cream">Volunteer Today</a>
         <a href="mailto:info@bertforsenate.com" class="btn btn--ghost-cream">Contact the Team</a>
       </div>
     </div>
