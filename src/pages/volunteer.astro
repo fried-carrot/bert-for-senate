@@ -141,20 +141,23 @@ const formOpenUrl = googleFormEmbedUrl.replace('?embedded=true', '');
     display: flex; align-items: center; justify-content: space-between;
     gap: 1.5rem; height: 70px;
   }
-  .vhead__brand { display: flex; align-items: center; gap: 0.8rem; }
+  .vhead__brand { display: flex; align-items: center; gap: 0.85rem; }
   .vhead__seal {
+    flex-shrink: 0;
     display: grid; place-items: center; width: 38px; height: 38px;
     background: var(--ox); color: var(--paper); border: 2px solid var(--ink);
     box-shadow: 3px 3px 0 var(--ink); font-size: 0.8rem; letter-spacing: -2px;
     transform: rotate(-3deg);
   }
+  .vhead__brand > span { display: flex; flex-direction: column; line-height: 1; }
   .vhead__brand strong {
-    display: block; font-family: var(--font-condensed); font-weight: 900;
+    font-family: var(--font-condensed); font-weight: 900;
     font-size: 1.2rem; color: var(--ink); letter-spacing: 0.01em;
   }
   .vhead__brand em {
     font-style: normal; font-family: var(--font-condensed); font-weight: 600;
     font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ox);
+    margin-top: 4px;
   }
   .vhead__end { display: flex; align-items: center; gap: 1.25rem; }
   .vhead__back {
